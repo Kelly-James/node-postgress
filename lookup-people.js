@@ -24,8 +24,14 @@ client.connect((err) => {
     if(err) {
       return console.error('Error Running Query', err);
     }
+    const person = result.rows[0];
 
-    console.log(result.rows[0]);
+    console.log('Found 1 person(s) by the name '
+                + `${input}` + '- 1: '
+                + person.first_name
+                + ' ' + person.last_name
+                + ', ' + 'born '
+                + person.birthdate);
 
     client.end((err) => {
       if (err) throw err;
