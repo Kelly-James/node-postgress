@@ -12,15 +12,24 @@ const client   = new pg.Client({
 });
 
 client.connect((err) => {
-  console.log('Searching...');
-  const sql = "SELECT * FROM famous_people WHERE famous_people.last_name = $1;"
   if(err) {
     return console.error('Connection Error', err);
   }
+
+  console.log('Searching...');
+
+  const sql = "SELECT * FROM famous_people WHERE famous_people.last_name = $1;"
+
   client.query(sql, [`${input}`], (err, result) => {
     if(err) {
       return console.error('Error Running Query', err);
     }
+
     console.log(result.rows[0]);
+
+    client.end((err) => {
+      if (err) throw err;
+    });
+
   });
 });
