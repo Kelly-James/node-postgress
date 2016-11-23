@@ -24,7 +24,7 @@ knex.select('first_name', 'last_name', 'birthdate').from('famous_people')
     .then(() => {
       console.log('Query complete');
       return knex.destroy();
-    })
+  })
     .catch((error) => {
       console.error(error);
-    });
+});
